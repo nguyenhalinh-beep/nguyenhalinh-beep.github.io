@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Hà Linh — Personal Portfolio & Space</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond (Editorial Serif) & Plus Jakarta Sans (Clean Modern Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Elegant Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // The primary elegant feminine theme: Sage Green (Matches Linh's beautiful dress!)
+                        themeSage: {
+                            bg: '#F3F5F1',       // Linen Soft Sage White
+                            card: '#FFFFFF',     // Clean White Cards
+                            text: '#222F24',     // Dark Forest Charcoal
+                            accent: '#8FA89B',   // Muted Sage Green
+                            accentLight: '#E5EBE6', // Pale Sage Silk
+                            primary: '#B4C6BD',  // Soft Leaf
+                            dustyRose: '#E1B3A8', // Elegant Terracotta Rose
+                            terracotta: '#A86B5C' // Warm Clay
+                        },
+                        // Alternating Theme: Warm Rose Quartz
+                        themeRose: {
+                            bg: '#FAF6F0',
+                            card: '#FFFFFF',
+                            text: '#2A2421',
+                            accent: '#D4A373',
+                            accentLight: '#FAEDCD',
+                            primary: '#CCD5AE',
+                            dustyRose: '#E8C5C8',
+                            terracotta: '#B5838D'
+                        },
+                        // Alternating Theme: Lavender Dream
+                        themeLavender: {
+                            bg: '#F5F3F7',
+                            card: '#FFFFFF',
+                            text: '#241E2B',
+                            accent: '#B39DDB',
+                            accentLight: '#EDE7F6',
+                            primary: '#C5CAE9',
+                            dustyRose: '#E1BEE7',
+                            terracotta: '#7E57C2'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .title-editorial {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Glassmorphic navigation menu */
+        .glass-nav {
+            background: rgba(243, 245, 241, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.4s ease;
+        }
+
+        /* Floating elegant animations */
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(0.5deg); }
+        }
+        .animate-float-1 {
+            animation: float-gentle 9s ease-in-out infinite;
+        }
+        .animate-float-2 {
+            animation: float-gentle 13s ease-in-out infinite 1.5s;
+        }
+
+        /* Aura effect for the player */
+        @keyframes pulse-aura {
+            0% { transform: scale(0.96); opacity: 0.4; }
+            50% { transform: scale(1.08); opacity: 0.15; }
+            100% { transform: scale(0.96); opacity: 0.4; }
+        }
+        .music-aura {
+            animation: pulse-aura 4s ease-in-out infinite;
+        }
+
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F3F5F1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #DCE3DB;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8FA89B;
+        }
+
+        /* Typewriter blinking cursor */
+        .cursor-blink::after {
+            content: '|';
+            animation: blink 0.9s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Soft fade-in for tab updates */
+        .fade-transition {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body id="theme-root" class="bg-themeSage-bg text-themeSage-text antialiased selection:bg-themeSage-primary/30 selection:text-themeSage-text">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-themeSage-accentLight/40">
+        <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Editorial Logo -->
+            <a href="#" class="title-editorial text-2xl font-semibold tracking-[0.15em] text-themeSage-text hover:opacity-85 transition-opacity">
+                HÀ LINH <span class="text-xs font-sans font-light tracking-widest opacity-50">. space</span>
+            </a>
+            
+            <!-- Desktop Links -->
+            <ul class="hidden md:flex space-x-10 text-[11px] uppercase tracking-[0.25em] font-medium">
+                <li><a href="#about" class="hover:text-themeSage-terracotta transition-colors">About</a></li>
+                <li><a href="#skills" class="hover:text-themeSage-terracotta transition-colors">Competencies</a></li>
+                <li><a href="#journey" class="hover:text-themeSage-terracotta transition-colors">Journey</a></li>
+                <li><a href="#chill" class="hover:text-themeSage-terracotta transition-colors">Chill Hub</a></li>
+                <li><a href="#contact" class="hover:text-themeSage-terracotta transition-colors">Contact</a></li>
+            </ul>
+
+            <!-- Theme Palette Config Selector -->
+            <div class="flex items-center space-x-3">
+                <div class="relative inline-block text-left" id="theme-dropdown-container">
+                    <button id="theme-toggle-btn" class="flex items-center space-x-2 text-[10px] uppercase tracking-wider font-semibold border border-themeSage-accent/20 px-3.5 py-1.5 rounded-full hover:bg-themeSage-accentLight/60 transition-all">
+                        <i class="fa-solid fa-wand-magic-sparkles text-themeSage-terracotta"></i>
+                        <span id="current-theme-name">Sage Matcha</span>
+                    </button>
+                    <!-- Palette list -->
+                    <div id="theme-dropdown" class="hidden absolute right-0 mt-2 w-48 rounded-2xl bg-white shadow-xl border border-gray-100 py-1.5 z-50 transition-all">
+                        <button onclick="setTheme('sage')" class="w-full text-left px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider flex items-center space-x-2 hover:bg-themeSage-accentLight text-themeSage-text">
+                            <span class="w-3 h-3 rounded-full bg-themeSage-accent"></span>
+                            <span>Sage Matcha</span>
+                        </button>
+                        <button onclick="setTheme('rose')" class="w-full text-left px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider flex items-center space-x-2 hover:bg-themeRose-bg text-themeRose-text">
+                            <span class="w-3 h-3 rounded-full bg-themeRose-dustyRose"></span>
+                            <span>Rose Quartz</span>
+                        </button>
+                        <button onclick="setTheme('lavender')" class="w-full text-left px-4 py-2.5 text-[11px] font-semibold uppercase tracking-wider flex items-center space-x-2 hover:bg-themeLavender-accentLight text-themeLavender-text">
+                            <span class="w-3 h-3 rounded-full bg-themeLavender-accent"></span>
+                            <span>Lavender Dream</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Responsive Menu Toggle -->
+                <button id="mobile-menu-btn" class="md:hidden text-themeSage-text hover:text-themeSage-terracotta focus:outline-none p-1">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Drawer Layout Mobile -->
+        <div id="mobile-menu-drawer" class="hidden md:hidden border-t border-themeSage-accentLight/30 bg-themeSage-bg/95 backdrop-blur-md px-6 py-6 transition-all duration-300">
+            <ul class="flex flex-col space-y-4 text-[11px] uppercase tracking-widest font-semibold text-themeSage-text">
+                <li><a href="#about" class="mobile-link block hover:text-themeSage-terracotta py-1.5">About</a></li>
+                <li><a href="#skills" class="mobile-link block hover:text-themeSage-terracotta py-1.5">Competencies</a></li>
+                <li><a href="#journey" class="mobile-link block hover:text-themeSage-terracotta py-1.5">Journey</a></li>
+                <li><a href="#chill" class="mobile-link block hover:text-themeSage-terracotta py-1.5">Chill Hub</a></li>
+                <li><a href="#contact" class="mobile-link block hover:text-themeSage-terracotta py-1.5">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="min-h-screen flex items-center justify-center pt-28 px-6 relative overflow-hidden">
+        <!-- Floating abstract feminine glass shapes -->
+        <div class="absolute top-28 right-[8%] w-80 h-80 rounded-full bg-themeSage-accent/15 blur-3xl animate-float-1"></div>
+        <div class="absolute bottom-16 left-[6%] w-96 h-96 rounded-full bg-themeSage-dustyRose/20 blur-3xl animate-float-2"></div>
+
+        <div class="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10 py-8">
+            
+            <!-- Editorial introduction text -->
+            <div class="md:col-span-7 text-center md:text-left space-y-6">
+                <span class="text-xs uppercase tracking-[0.35em] text-themeSage-terracotta font-semibold block">FTU Advanced Program • International Business</span>
+                <h1 class="title-editorial text-5xl sm:text-6xl lg:text-7xl font-light text-themeSage-text leading-[1.1]">
+                    Nguyễn Hà Linh<br>
+                    <span class="italic font-normal text-themeSage-terracotta text-3xl sm:text-4xl lg:text-5xl cursor-blink" id="dynamic-typewriter"></span>
+                </h1>
+                
+                <p class="text-themeSage-text/85 font-light text-base leading-relaxed max-w-lg">
+                    A proactive, highly analytical freshman at <strong class="font-medium">Foreign Trade University (FTU)</strong>. Equipped with an IELTS 8.0 overall score, intermediate Korean fluency, and soft-skills refined from extracurricular micro-startups. Driven to excel in dynamic international trade & logistics environments.
+                </p>
+                
+                <!-- Quick stats labels -->
+                <div class="flex flex-wrap gap-4 pt-2 justify-center md:justify-start">
+                    <span class="px-3.5 py-1.5 bg-white/70 border border-themeSage-accent/10 rounded-full text-[10px] uppercase tracking-wider font-semibold text-themeSage-text flex items-center gap-1.5">
+                        <i class="fa-solid fa-graduation-cap text-themeSage-accent"></i> FTU Advanced Program
+                    </span>
+                    <span class="px-3.5 py-1.5 bg-white/70 border border-themeSage-accent/10 rounded-full text-[10px] uppercase tracking-wider font-semibold text-themeSage-text flex items-center gap-1.5">
+                        <i class="fa-solid fa-award text-themeSage-accent"></i> IELTS 8.0 Overall
+                    </span>
+                    <span class="px-3.5 py-1.5 bg-white/70 border border-themeSage-accent/10 rounded-full text-[10px] uppercase tracking-wider font-semibold text-themeSage-text flex items-center gap-1.5">
+                        <i class="fa-solid fa-globe text-themeSage-accent"></i> Korean Intermediate
+                    </span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
+                    <a href="#journey" class="group px-8 py-4 bg-themeSage-text text-white rounded-full text-[11px] uppercase tracking-widest font-semibold hover:bg-themeSage-terracotta transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center">
+                        Explore My Journey
+                        <i class="fa-solid fa-arrow-right-long ml-2.5 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 border border-themeSage-text/20 hover:border-themeSage-terracotta hover:bg-themeSage-accentLight/30 text-themeSage-text rounded-full text-[11px] uppercase tracking-widest font-semibold transition-all duration-300 flex items-center justify-center">
+                        Let's Connect
+                    </a>
+                </div>
+            </div>
+
+            <!-- Single Elegant Photo Frame (Using Hà Linh's Portrait) -->
+            <div class="md:col-span-5 flex justify-center">
+                <div class="relative w-72 sm:w-80 h-[480px]">
+                    <!-- Decorative back border -->
+                    <div class="absolute inset-0 border border-themeSage-terracotta/20 rounded-[2.5rem] transform translate-x-3 translate-y-3 transition-transform duration-500"></div>
+                    
+                    <!-- Main Image (Sage Dress Street portrait) -->
+                    <div id="main-portrait-box" class="absolute inset-0 rounded-[2.5rem] overflow-hidden shadow-xl border border-white bg-themeSage-accentLight transition-all duration-700">
+                        <img 
+                            id="profile-img"
+                            src="images/profile.jpg" 
+                            alt="Nguyễn Hà Linh Portrait" 
+                            class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                            onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600'"
+                        >
+                        <!-- Floating overlay profile snippet -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-white/85 backdrop-blur-md p-3.5 rounded-2xl border border-white/50 text-left">
+                            <span class="text-[9px] uppercase tracking-widest text-themeSage-terracotta font-bold">Hanoi, Vietnam</span>
+                            <h4 class="title-editorial text-base font-semibold text-themeSage-text">Nguyễn Hà Linh</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrolling Down Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-1.5 opacity-50">
+            <span class="text-[9px] uppercase tracking-[0.3em]">Scroll</span>
+            <div class="w-[1px] h-8 bg-themeSage-text/25 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1/2 bg-themeSage-terracotta animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-white border-y border-themeSage-accentLight/30 px-6 relative">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-start">
+            
+            <!-- Left Narrative Editorial Block -->
+            <div class="md:col-span-5 space-y-6">
+                <span class="text-xs uppercase tracking-[0.25em] text-themeSage-terracotta font-semibold">About Me</span>
+                <h2 class="title-editorial text-4xl sm:text-5xl font-light text-themeSage-text leading-tight">Proactive Mindset, Global Vision</h2>
+                <div class="w-16 h-[2px] bg-themeSage-terracotta"></div>
+                
+                <p class="text-themeSage-text/80 font-light leading-relaxed text-sm">
+                    As an International Business freshman in the Advanced Program at <strong class="font-medium">Foreign Trade University</strong>, I constantly seek out challenging opportunities to cross-pollinate theoretical logistics knowledge with actionable modern management.
+                </p>
+                <p class="text-themeSage-text/80 font-light leading-relaxed text-sm">
+                    Through structured academics and fast-paced co-founding projects like the "Hawaii u" micro-startup, I have cultivated operational ownership, external communications grit, and an analytical work ethic.
+                </p>
+                
+                <!-- Quick numbers -->
+                <div class="pt-2 grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-themeSage-bg/40 rounded-2xl border border-themeSage-accentLight/25">
+                        <h3 class="title-editorial text-3xl font-semibold text-themeSage-terracotta">8.0</h3>
+                        <span class="text-[9px] uppercase tracking-wider text-themeSage-text/50">IELTS Overall</span>
+                    </div>
+                    <div class="p-4 bg-themeSage-bg/40 rounded-2xl border border-themeSage-accentLight/25">
+                        <h3 class="title-editorial text-3xl font-semibold text-themeSage-terracotta">3+ Yrs</h3>
+                        <span class="text-[9px] uppercase tracking-wider text-themeSage-text/50">Korean Focus</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Interactive Competency Tabs -->
+            <div id="skills" class="md:col-span-7 space-y-6">
+                <h3 class="title-editorial text-2xl font-light text-themeSage-text">Core Competency Fields</h3>
+                <p class="text-xs text-themeSage-text/55">Click on any segment card to read detailed applications & relevant courses.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Tab 1 -->
+                    <div onclick="showSkillDetail('logistics')" class="skill-card cursor-pointer p-5 bg-themeSage-bg/20 border border-themeSage-accentLight/30 rounded-2xl hover:bg-white hover:border-themeSage-terracotta/40 hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-themeSage-text">Logistics & Trade</span>
+                            <i class="fa-solid fa-truck-ramp-box text-themeSage-terracotta text-sm"></i>
+                        </div>
+                        <div class="w-full h-[3px] bg-themeSage-accentLight rounded-full overflow-hidden mb-2">
+                            <div class="h-full bg-themeSage-accent" style="width: 80%"></div>
+                        </div>
+                        <span class="text-[11px] text-themeSage-text/65">International Trade, Operations Management</span>
+                    </div>
+
+                    <!-- Tab 2 -->
+                    <div onclick="showSkillDetail('startup')" class="skill-card cursor-pointer p-5 bg-themeSage-bg/20 border border-themeSage-accentLight/30 rounded-2xl hover:bg-white hover:border-themeSage-terracotta/40 hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-themeSage-text">Operations & HR</span>
+                            <i class="fa-solid fa-people-gear text-themeSage-terracotta text-sm"></i>
+                        </div>
+                        <div class="w-full h-[3px] bg-themeSage-accentLight rounded-full overflow-hidden mb-2">
+                            <div class="h-full bg-themeSage-accent" style="width: 85%"></div>
+                        </div>
+                        <span class="text-[11px] text-themeSage-text/65">Co-managed micro-startup, Event planning</span>
+                    </div>
+
+                    <!-- Tab 3 -->
+                    <div onclick="showSkillDetail('languages')" class="skill-card cursor-pointer p-5 bg-themeSage-bg/20 border border-themeSage-accentLight/30 rounded-2xl hover:bg-white hover:border-themeSage-terracotta/40 hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-themeSage-text">Global Languages</span>
+                            <i class="fa-solid fa-language text-themeSage-terracotta text-sm"></i>
+                        </div>
+                        <div class="w-full h-[3px] bg-themeSage-accentLight rounded-full overflow-hidden mb-2">
+                            <div class="h-full bg-themeSage-accent" style="width: 90%"></div>
+                        </div>
+                        <span class="text-[11px] text-themeSage-text/65">English IELTS 8.0, Korean (Intermediate)</span>
+                    </div>
+
+                    <!-- Tab 4 -->
+                    <div onclick="showSkillDetail('digital')" class="skill-card cursor-pointer p-5 bg-themeSage-bg/20 border border-themeSage-accentLight/30 rounded-2xl hover:bg-white hover:border-themeSage-terracotta/40 hover:shadow-md transition-all duration-300">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-themeSage-text">Soft Skills & Office</span>
+                            <i class="fa-solid fa-laptop-code text-themeSage-terracotta text-sm"></i>
+                        </div>
+                        <div class="w-full h-[3px] bg-themeSage-accentLight rounded-full overflow-hidden mb-2">
+                            <div class="h-full bg-themeSage-accent" style="width: 75%"></div>
+                        </div>
+                        <span class="text-[11px] text-themeSage-text/65">Adaptability, Teamwork, MS Office Suite</span>
+                    </div>
+                </div>
+
+                <!-- Live descriptive info box -->
+                <div id="skill-detail-box" class="p-5 rounded-2xl bg-themeSage-bg/35 border border-themeSage-accentLight/40 mt-6 transition-all duration-300">
+                    <h4 id="skill-detail-title" class="text-xs uppercase tracking-wider font-bold text-themeSage-terracotta mb-2">Select a field above</h4>
+                    <p id="skill-detail-text" class="text-xs text-themeSage-text/80 leading-relaxed font-light">
+                        Click on any skill card above to check specific instances, courses, and my personal learning approach within that domain.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="journey" class="py-24 bg-themeSage-bg/20 px-6">
+        <div class="max-w-4xl mx-auto">
+            
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs uppercase tracking-[0.25em] text-themeSage-terracotta font-semibold">Timeline & Milestones</span>
+                <h2 class="title-editorial text-4xl sm:text-5xl font-light text-themeSage-text">Academic & Extracurricular Journey</h2>
+                <div class="w-16 h-[2px] bg-themeSage-terracotta mx-auto"></div>
+            </div>
+
+            <!-- Interative Timeline Tree -->
+            <div class="relative border-l border-themeSage-accent/30 ml-4 md:ml-36 space-y-10">
+                
+                <!-- Timeline Segment: Hawaii u (Featured) -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white flex items-center justify-center ring-4 ring-themeSage-bg group-hover:scale-110 transition-transform shadow-sm">
+                        <div class="w-2.5 h-2.5 bg-themeSage-terracotta rounded-full"></div>
+                    </div>
+                    <div class="md:absolute md:-left-36 md:top-1.5 md:w-28 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-themeSage-terracotta block">2025</span>
+                    </div>
+                    <div class="space-y-3 p-5 bg-white rounded-2xl border border-themeSage-accent/10 shadow-sm group-hover:shadow-md transition-shadow">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="title-editorial text-2xl font-light text-themeSage-text">"Hawaii u" — Micro-startup Project</h3>
+                            <span class="px-2.5 py-1 bg-themeSage-accentLight text-themeSage-text text-[9px] uppercase tracking-wider font-bold rounded-full">Featured Project</span>
+                        </div>
+                        <p class="text-xs text-themeSage-text/50 uppercase tracking-widest font-semibold">Co-founder | Operations Lead • Career Development Skills Course</p>
+                        <p class="text-themeSage-text/80 font-light text-xs leading-relaxed max-w-2xl">
+                            Actively co-managed project operations and directed strategic structural steps for a modern simulated micro-startup model, learning directly from enterprise case dynamics.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Segment: FTU -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white flex items-center justify-center ring-4 ring-themeSage-bg group-hover:scale-110 transition-transform shadow-sm">
+                        <div class="w-2.5 h-2.5 bg-themeSage-accent rounded-full"></div>
+                    </div>
+                    <div class="md:absolute md:-left-36 md:top-1.5 md:w-28 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-themeSage-text/40 block">2024 - 2028</span>
+                    </div>
+                    <div class="space-y-3 p-5 bg-white/50 rounded-2xl border border-themeSage-accent/10">
+                        <h3 class="title-editorial text-2xl font-light text-themeSage-text">Foreign Trade University (FTU)</h3>
+                        <p class="text-xs text-themeSage-text/50 uppercase tracking-widest font-semibold">International Business Major (Advanced Program)</p>
+                        <p class="text-themeSage-text/80 font-light text-xs leading-relaxed max-w-2xl">
+                            Specializing in cross-border trade flow, deep market dynamics, supply chain systems, and global corporate finance theories under highly rigorous English teaching standards.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Segment: IELTS / Work -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white flex items-center justify-center ring-4 ring-themeSage-bg group-hover:scale-110 transition-transform shadow-sm">
+                        <div class="w-2.5 h-2.5 bg-themeSage-accent rounded-full"></div>
+                    </div>
+                    <div class="md:absolute md:-left-36 md:top-1.5 md:w-28 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-themeSage-text/40 block">2024 - Present</span>
+                    </div>
+                    <div class="space-y-3 p-5 bg-white/50 rounded-2xl border border-themeSage-accent/10">
+                        <h3 class="title-editorial text-2xl font-light text-themeSage-text">Part-Time IELTS Tutor & 1-1 Teacher</h3>
+                        <p class="text-xs text-themeSage-text/50 uppercase tracking-widest font-semibold">Self-Employed & Language Centers</p>
+                        <p class="text-themeSage-text/80 font-light text-xs leading-relaxed max-w-2xl">
+                            Designed personalized curriculum structures and conducted intensive 1-1 training sessions, leveraging my personal IELTS 8.0 strategies to foster confident English speaking.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Segment: FLSS -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white flex items-center justify-center ring-4 ring-themeSage-bg group-hover:scale-110 transition-transform shadow-sm">
+                        <div class="w-2.5 h-2.5 bg-themeSage-accent rounded-full"></div>
+                    </div>
+                    <div class="md:absolute md:-left-36 md:top-1.5 md:w-28 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-themeSage-text/40 block">2021 - 2024</span>
+                    </div>
+                    <div class="space-y-3 p-5 bg-white/50 rounded-2xl border border-themeSage-accent/10">
+                        <h3 class="title-editorial text-2xl font-light text-themeSage-text">Foreign Language Specialized School (FLSS)</h3>
+                        <p class="text-xs text-themeSage-text/50 uppercase tracking-widest font-semibold">Korean Language Major</p>
+                        <p class="text-themeSage-text/80 font-light text-xs leading-relaxed max-w-2xl">
+                            Formed a deep foundation in Korean vocabulary, grammar, and socio-cultural paradigms while serving in diverse school organizational boards.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Segment: Dance Y'All 2022 -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white flex items-center justify-center ring-4 ring-themeSage-bg group-hover:scale-110 transition-transform shadow-sm">
+                        <div class="w-2.5 h-2.5 bg-themeSage-accent rounded-full"></div>
+                    </div>
+                    <div class="md:absolute md:-left-36 md:top-1.5 md:w-28 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-themeSage-text/40 block">2022</span>
+                    </div>
+                    <div class="space-y-3 p-5 bg-white/50 rounded-2xl border border-themeSage-accent/10">
+                        <h3 class="title-editorial text-2xl font-light text-themeSage-text">Dance Y'all 2022 — CNN Dance Club</h3>
+                        <p class="text-xs text-themeSage-text/50 uppercase tracking-widest font-semibold">External Relations Department Member</p>
+                        <p class="text-themeSage-text/80 font-light text-xs leading-relaxed max-w-2xl">
+                            Managed communication structures with critical corporate sponsors and directed precise guest relations for a massive dance showcase event pulling over 300 active participants.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Segment: Pluère Project -->
+                <div class="relative pl-8 md:pl-12 group">
+                    <div class="absolute -left-[14px] top-1 w-6 h-6 rounded-full bg-white flex items-center justify-center ring-4 ring-themeSage-bg group-hover:scale-110 transition-transform shadow-sm">
+                        <div class="w-2.5 h-2.5 bg-themeSage-accent rounded-full"></div>
+                    </div>
+                    <div class="md:absolute md:-left-36 md:top-1.5 md:w-28 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-wider font-bold text-themeSage-text/40 block">2021</span>
+                    </div>
+                    <div class="space-y-3 p-5 bg-white/50 rounded-2xl border border-themeSage-accent/10">
+                        <h3 class="title-editorial text-2xl font-light text-themeSage-text">Pluère Project</h3>
+                        <p class="text-xs text-themeSage-text/50 uppercase tracking-widest font-semibold">Human Resources Department Member</p>
+                        <p class="text-themeSage-text/80 font-light text-xs leading-relaxed max-w-2xl">
+                            Coordinated internal engagement programs and scheduled structured bonding events to optimize team motivation levels across project pipelines.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="chill" class="py-24 bg-themeSage-bg/30 px-6 relative overflow-hidden">
+        <div class="absolute -top-12 right-0 w-96 h-96 bg-themeSage-accent/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <!-- Left Side: Interactive Music Player -->
+            <div class="md:col-span-6 space-y-6">
+                <span class="text-xs uppercase tracking-[0.25em] text-themeSage-terracotta font-semibold">Unwind & Breathe</span>
+                <h2 class="title-editorial text-4xl font-light text-themeSage-text">Linh's Chill Station</h2>
+                <p class="text-themeSage-text/75 text-xs leading-relaxed font-light">
+                    Welcome to my cozy personal harbor! When I am busy reviewing logistics reports or preparing IELTS sheets, I always put on some relaxing tunes. Click play below to share my study vibe.
+                </p>
+
+                <!-- Custom Vinyl Style Player Widget -->
+                <div class="p-6 bg-white border border-themeSage-accent/10 rounded-3xl shadow-xl relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-themeSage-dustyRose/15 rounded-full blur-2xl"></div>
+                    
+                    <div class="flex items-center space-x-6 relative">
+                        <!-- Spinning Vinyl -->
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-themeSage-terracotta/15 rounded-full music-aura" id="aura-effect"></div>
+                            <div id="vinyl-record" class="w-20 h-20 rounded-full bg-zinc-800 border-4 border-double border-zinc-950 flex items-center justify-center transition-transform duration-1000 ease-linear">
+                                <div class="w-6 h-6 rounded-full bg-themeSage-dustyRose flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Track Controls -->
+                        <div class="flex-1 space-y-1.5">
+                            <span class="text-[9px] uppercase tracking-wider text-themeSage-terracotta font-bold">Aesthetic Radio</span>
+                            <h4 id="song-title" class="text-xs font-semibold text-themeSage-text line-clamp-1">Seoul Coffee Morning</h4>
+                            <p class="text-[9px] text-themeSage-text/50 font-light">Serene Instrumental Lofi</p>
+                            
+                            <div class="flex items-center space-x-4 pt-1">
+                                <button onclick="prevSong()" class="text-themeSage-text/60 hover:text-themeSage-terracotta transition-colors"><i class="fa-solid fa-backward-step text-sm"></i></button>
+                                <button onclick="toggleMusic()" id="play-btn" class="w-8 h-8 rounded-full bg-themeSage-terracotta text-white flex items-center justify-center hover:bg-themeSage-text transition-colors shadow-sm">
+                                    <i class="fa-solid fa-play text-xs" id="play-icon"></i>
+                                </button>
+                                <button onclick="nextSong()" class="text-themeSage-text/60 hover:text-themeSage-terracotta transition-colors"><i class="fa-solid fa-forward-step text-sm"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Simulated Equalizer Visualizer -->
+                    <div class="flex items-center justify-center space-x-1.5 pt-6 h-8">
+                        <div class="w-1 bg-themeSage-accent/60 rounded-full" id="wave-1" style="height: 4px;"></div>
+                        <div class="w-1 bg-themeSage-accent/60 rounded-full" id="wave-2" style="height: 4px;"></div>
+                        <div class="w-1 bg-themeSage-accent/60 rounded-full" id="wave-3" style="height: 4px;"></div>
+                        <div class="w-1 bg-themeSage-accent/60 rounded-full" id="wave-4" style="height: 4px;"></div>
+                        <div class="w-1 bg-themeSage-accent/60 rounded-full" id="wave-5" style="height: 4px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Editorial Quote & Inspiration (Replacing Guestbook) -->
+            <div class="md:col-span-6 space-y-6 pl-0 md:pl-8">
+                <div class="border-l-2 border-themeSage-terracotta/40 pl-6 py-2 space-y-4">
+                    <p class="title-editorial italic text-2xl text-themeSage-text/90 leading-relaxed">
+                        "Quiet progress is still progress. Let your hard work make the noise, and let your space remain serene."
+                    </p>
+                    <div class="space-y-1">
+                        <h4 class="text-xs uppercase tracking-widest font-semibold text-themeSage-terracotta">Hà Linh's Study Philosophy</h4>
+                        <p class="text-[10px] text-themeSage-text/50 font-light">Balancing Academic Rigor with Mental Peace</p>
+                    </div>
+                </div>
+                <p class="text-xs text-themeSage-text/70 leading-relaxed font-light">
+                    As an International Business student at FTU, the coursework demands both analytical precision and creative problem-solving. This chill space is a reminder to slow down, put on some music, and approach every logistics challenge with a clear, calm mind.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-white px-6">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16 space-y-3">
+                <span class="text-xs uppercase tracking-[0.25em] text-themeSage-terracotta font-semibold">Let's build something great</span>
+                <h2 class="title-editorial text-4xl sm:text-5xl font-light text-themeSage-text">Connect With Hà Linh</h2>
+                <div class="w-16 h-[2px] bg-themeSage-terracotta mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Quick Contact Info Cards -->
+                <div class="lg:col-span-5 space-y-6">
+                    <h3 class="title-editorial text-2xl font-light text-themeSage-text">Interested in partnerships?</h3>
+                    <p class="text-themeSage-text/80 text-sm leading-relaxed font-light">
+                        I am currently seeking prospective internship positions, study partnerships, or logistics mentorship opportunities. Let's start the conversation.
+                    </p>
+                    
+                    <div class="space-y-4 pt-2">
+                        <!-- Interactive Clipboard Copy email -->
+                        <div class="flex items-center space-x-3 p-4 bg-themeSage-bg/30 rounded-2xl border border-themeSage-accent/10 text-xs">
+                            <i class="fa-regular fa-envelope text-themeSage-terracotta text-sm w-5 text-center"></i>
+                            <span id="email-addr" class="cursor-pointer hover:text-themeSage-terracotta font-medium transition-colors" onclick="copyEmailToClipboard()">
+                                halinhntt3406@gmail.com
+                            </span>
+                            <span id="copy-tooltip" class="hidden text-[9px] bg-themeSage-text text-white px-2 py-0.5 rounded transition-opacity">Copied!</span>
+                        </div>
+                        
+                        <div class="flex items-center space-x-3 p-4 bg-themeSage-bg/30 rounded-2xl border border-themeSage-accent/10 text-xs">
+                            <i class="fa-solid fa-phone text-themeSage-terracotta text-sm w-5 text-center"></i>
+                            <span class="font-light text-themeSage-text/75">+84 (0)977679375</span>
+                        </div>
+
+                        <div class="flex items-center space-x-3 p-4 bg-themeSage-bg/30 rounded-2xl border border-themeSage-accent/10 text-xs">
+                            <i class="fa-solid fa-location-dot text-themeSage-terracotta text-sm w-5 text-center"></i>
+                            <span class="font-light text-themeSage-text/75">Xuân Tảo, Tây Hồ, Hanoi, VN</span>
+                        </div>
+                    </div>
+
+                    <!-- Subtle Feminine Social Link Array -->
+                    <div class="flex space-x-6 pt-4 text-lg text-themeSage-text/60">
+                        <a href="https://github.com" target="_blank" class="hover:text-themeSage-terracotta transition-colors"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="hover:text-themeSage-terracotta transition-colors"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="hover:text-themeSage-terracotta transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" class="hover:text-themeSage-terracotta transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                    </div>
+                </div>
+
+                <!-- Simulation Action Form -->
+                <form onsubmit="handleFormSubmit(event)" class="lg:col-span-7 bg-themeSage-bg/20 p-8 rounded-3xl border border-themeSage-accent/10 space-y-6">
+                    <div class="relative">
+                        <input type="text" id="form-name" required placeholder=" " class="peer w-full bg-white border border-themeSage-accent/10 rounded-xl px-4 py-3.5 text-xs text-themeSage-text focus:outline-none focus:border-themeSage-terracotta transition-all placeholder-transparent">
+                        <label for="form-name" class="absolute left-4 top-3.5 text-xs text-themeSage-text/40 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-xs peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-themeSage-terracotta bg-white px-1 rounded-sm">Your Name</label>
+                    </div>
+                    
+                    <div class="relative">
+                        <input type="email" id="form-email" required placeholder=" " class="peer w-full bg-white border border-themeSage-accent/10 rounded-xl px-4 py-3.5 text-xs text-themeSage-text focus:outline-none focus:border-themeSage-terracotta transition-all placeholder-transparent">
+                        <label for="form-email" class="absolute left-4 top-3.5 text-xs text-themeSage-text/40 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-xs peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-themeSage-terracotta bg-white px-1 rounded-sm">Your Email Address</label>
+                    </div>
+
+                    <div class="relative">
+                        <textarea id="form-message" required rows="4" placeholder=" " class="peer w-full bg-white border border-themeSage-accent/10 rounded-xl px-4 py-3.5 text-xs text-themeSage-text focus:outline-none focus:border-themeSage-terracotta transition-all placeholder-transparent resize-none"></textarea>
+                        <label for="form-message" class="absolute left-4 top-3.5 text-xs text-themeSage-text/40 transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-xs peer-focus:top-[-8px] peer-focus:text-[10px] peer-focus:text-themeSage-terracotta bg-white px-1 rounded-sm">Type your message here...</label>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-themeSage-text text-white text-xs uppercase tracking-widest font-semibold rounded-xl hover:bg-themeSage-terracotta transition-colors shadow-sm">
+                        Send Message <i class="fa-regular fa-paper-plane ml-2"></i>
+                    </button>
+                    
+                    <div id="form-success" class="hidden text-xs text-emerald-700 bg-emerald-50 border border-emerald-100 p-4 rounded-xl text-center">
+                        Message mock-sent successfully! Thank you for writing to me.
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-themeSage-accentLight/20 py-12 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs text-themeSage-text/50 tracking-wider">
+            <p class="mb-4 md:mb-0">&copy; 2026 Crafted with love by Nguyễn Hà Linh. All rights reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-themeSage-terracotta transition-colors">Privacy Policy</a>
+                <a href="https://github.com" class="hover:text-themeSage-terracotta transition-colors">GitHub Dev Hub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Config Database
+        const themes = {
+            sage: {
+                name: "Sage Matcha",
+                classes: {
+                    bg: "bg-themeSage-bg",
+                    text: "text-themeSage-text",
+                    accent: "text-themeSage-terracotta",
+                    accentLight: "bg-themeSage-accentLight",
+                    border: "border-themeSage-accent/10"
+                }
+            },
+            rose: {
+                name: "Rose Quartz",
+                classes: {
+                    bg: "bg-themeRose-bg",
+                    text: "text-themeRose-text",
+                    accent: "text-themeRose-terracotta",
+                    accentLight: "bg-themeRose-accentLight",
+                    border: "border-themeRose-accent/10"
+                }
+            },
+            lavender: {
+                name: "Lavender Dream",
+                classes: {
+                    bg: "bg-themeLavender-bg",
+                    text: "text-themeLavender-text",
+                    accent: "text-themeLavender-terracotta",
+                    accentLight: "bg-themeLavender-accentLight",
+                    border: "border-themeLavender-accent/10"
+                }
+            }
+        };
+
+        let currentTheme = 'sage';
+
+        function setTheme(themeKey) {
+            const root = document.getElementById('theme-root');
+            const nameEl = document.getElementById('current-theme-name');
+            
+            // Wipe clean older theme classes
+            Object.keys(themes).forEach(t => {
+                root.classList.remove(`bg-theme${capitalize(t)}-bg`, `text-theme${capitalize(t)}-text`, `selection:bg-theme${capitalize(t)}-primary/30`);
+            });
+
+            currentTheme = themeKey;
+            root.classList.add(`bg-theme${capitalize(themeKey)}-bg`, `text-theme${capitalize(themeKey)}-text`, `selection:bg-theme${capitalize(themeKey)}-primary/30`);
+            nameEl.innerText = themes[themeKey].name;
+
+            // Soft-restyle the micro UI toggle button icon
+            const paletteBtnIcon = document.querySelector('#theme-toggle-btn i');
+            paletteBtnIcon.className = `fa-solid fa-palette text-theme${capitalize(themeKey)}-terracotta`;
+
+            // Dim down selection panel
+            document.getElementById('theme-dropdown').classList.add('hidden');
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        // Dropdown interactive actions
+        const themeBtn = document.getElementById('theme-toggle-btn');
+        const themeDropdown = document.getElementById('theme-dropdown');
+
+        themeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themeDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            themeDropdown.classList.add('hidden');
+        });
+
+        // Mobile Sidebar toggler
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileDrawer = document.getElementById('mobile-menu-drawer');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('hidden');
+            });
+        });
+
+        // Interactive Typewriter cycle (Tailored to Hà Linh's exact profile)
+        const words = ["International Business Major", "IELTS 8.0 overall", "Korean Language Scholar", "Hawaii u Co-founder"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById('dynamic-typewriter');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = 100;
+            if (isDeleting) {
+                typingSpeed /= 2.5; 
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2200; 
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typingSpeed = 400; 
+            }
+
+            setTimeout(type, typingSpeed);
+        }
+
+        // Competency database
+        const skillDetails = {
+            logistics: {
+                title: "International Trade & Logistics",
+                text: "Specializing in the dynamics of global commerce, structural supply chains, and standard cargo handling models. Highly enthusiastic about applying structured flow frameworks to maximize efficiency inside fast-paced transport hubs."
+            },
+            startup: {
+                title: "Business Operations & Project Management",
+                text: "Cultivated tactical management insights co-founding the 'Hawaii u' project and leading the CNN Dance Club external affairs department. Confident in aligning project timelines and communicating with critical enterprise clients."
+            },
+            languages: {
+                title: "Multilingual Global Dialogue",
+                text: "English: Highly professional IELTS 8.0 Overall capacity enabling fluent analytical reading and high-precision speech. Korean: 3 years of rigorous study at Foreign Language Specialized High School creating a solid base for regional relations."
+            },
+            digital: {
+                title: "Digital Productivity & Soft Skills",
+                text: "Proficient in analyzing datasets using MS Excel, formatting extensive project proposals in MS Word, and drafting elegant slides in PowerPoint. Complemented by active time management and visual workflow tools."
+            }
+        };
+
+        function showSkillDetail(skillKey) {
+            const detailBox = document.getElementById('skill-detail-box');
+            const detailTitle = document.getElementById('skill-detail-title');
+            const detailText = document.getElementById('skill-detail-text');
+
+            // Animation punch
+            detailBox.style.transform = "scale(0.98)";
+            detailBox.style.opacity = "0.7";
+
+            setTimeout(() => {
+                detailTitle.innerText = skillDetails[skillKey].title;
+                detailText.innerText = skillDetails[skillKey].text;
+                detailBox.style.transform = "scale(1)";
+                detailBox.style.opacity = "1";
+            }, 150);
+        }
+
+        // Lofi Audio player simulation code
+        const playlist = [
+            { title: "Seoul Coffee Morning", state: false },
+            { title: "Incheon Terminal Lights", state: false },
+            { title: "West Lake Raindrops", state: false }
+        ];
+        let currentTrackIndex = 0;
+        let isMusicPlaying = false;
+        let recordInterval;
+
+        function toggleMusic() {
+            const playIcon = document.getElementById('play-icon');
+            const vinyl = document.getElementById('vinyl-record');
+            const aura = document.getElementById('aura-effect');
+            
+            isMusicPlaying = !isMusicPlaying;
+
+            if (isMusicPlaying) {
+                playIcon.className = "fa-solid fa-pause text-xs";
+                startVinylRotation();
+                animateWaves(true);
+            } else {
+                playIcon.className = "fa-solid fa-play text-xs";
+                stopVinylRotation();
+                animateWaves(false);
+            }
+        }
+
+        let rotationAngle = 0;
+        function startVinylRotation() {
+            const vinyl = document.getElementById('vinyl-record');
+            recordInterval = setInterval(() => {
+                rotationAngle += 1;
+                vinyl.style.transform = `rotate(${rotationAngle}deg)`;
+            }, 16);
+        }
+
+        function stopVinylRotation() {
+            clearInterval(recordInterval);
+        }
+
+        function animateWaves(play) {
+            for (let i = 1; i <= 5; i++) {
+                const bar = document.getElementById(`wave-${i}`);
+                if (play) {
+                    bar.style.animation = `wave-bounce ${0.45 + Math.random() * 0.45}s ease-in-out infinite alternate`;
+                } else {
+                    bar.style.animation = 'none';
+                    bar.style.height = '4px';
+                }
+            }
+        }
+
+        function nextSong() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            updateTrackInfo();
+        }
+
+        function prevSong() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            updateTrackInfo();
+        }
+
+        function updateTrackInfo() {
+            document.getElementById('song-title').innerText = playlist[currentTrackIndex].title;
+            if (isMusicPlaying) {
+                rotationAngle = 0;
+            }
+        }
+
+        // Simulation Mail Form triggers
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const msgEl = document.getElementById('form-success');
+            msgEl.classList.remove('hidden');
+            event.target.reset();
+            setTimeout(() => {
+                msgEl.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Copy Email helper
+        function copyEmailToClipboard() {
+            const emailText = document.getElementById('email-addr').innerText.trim();
+            const tooltip = document.getElementById('copy-tooltip');
+            
+            const tempInput = document.createElement('input');
+            tempInput.value = emailText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            tooltip.classList.remove('hidden');
+            tooltip.style.opacity = "1";
+            setTimeout(() => {
+                tooltip.style.opacity = "0";
+                setTimeout(() => tooltip.classList.add('hidden'), 250);
+            }, 1800);
+        }
+
+        // Core initializer
+        window.onload = function () {
+            // Initiate Typewriter cycle
+            type();
+        }
+    </script>
+</body>
+</html>
